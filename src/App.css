@@ -1,0 +1,38 @@
+body {
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+@font-face {
+  font-family: Pixelify;
+  src: url(./assets/fonts/PixelifySans-VariableFont_wght.ttf);
+}
+
+.mainContainer {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.title {
+  font-family: Pixelify;
+  font-size: 90px;
+}
+
+form {
+  display: flex;
+  gap: 4px;
+}
+
+table {
+  margin-top: 2rem;
+}
+
+td {
+  border: 1px solid black;
+  min-width: 150px;
+  text-align: center;
+}
