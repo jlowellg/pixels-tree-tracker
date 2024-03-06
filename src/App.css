@@ -9,6 +9,11 @@ body {
   src: url(./assets/fonts/PixelifySans-VariableFont_wght.ttf);
 }
 
+@font-face {
+  font-family: PressStart2P;
+  src: url(./assets/fonts/PressStart2P-Regular.ttf);
+}
+
 .mainContainer {
   align-items: center;
   display: flex;
@@ -18,13 +23,13 @@ body {
 }
 
 .title {
-  font-family: Pixelify;
+  font-family: PressStart2P;
   font-size: 90px;
 }
 
 form {
   display: flex;
-  gap: 4px;
+  gap: 7px;
 }
 
 table {
