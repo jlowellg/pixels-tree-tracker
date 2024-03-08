@@ -100,8 +100,8 @@ function App() {
       <header>
         <h1 className="title">PiXelS</h1>
         <h2 className="subTitle">Tree Tracker</h2>
-        <h3 className="clock">{time}</h3>
         <h6 className="credits">by: jlowell</h6>
+        <h3 className="clock">{time}</h3>
       </header>
 
       <form onSubmit={handleSubmit}>
@@ -123,8 +123,8 @@ function App() {
           <thead>
             <tr>
               <td>Land ID</td>
-              <td>Previous time:</td>
-              <td>Comeback in:</td>
+              <td className="hideColumn">Previous time:</td>
+              <td className="hideColumn">Comeback in:</td>
               <td>Time Remaining:</td>
               <td className="settingsCell">
                 <button
@@ -143,8 +143,12 @@ function App() {
                 <td>
                   <ViewLand id={land.id} />
                 </td>
-                <td>{format(land.time, "MM/dd hh:mm a")}</td>
-                <td>{format(addMinutes(land.time, 435), "MM/dd hh:mm a")}</td>
+                <td className="hideColumn">
+                  {format(land.time, "MM/dd hh:mm a")}
+                </td>
+                <td className="hideColumn">
+                  {format(addMinutes(land.time, 435), "MM/dd hh:mm a")}
+                </td>
                 <td>{handleDiff(land.time, land.id)}</td>
 
                 {settings ? (

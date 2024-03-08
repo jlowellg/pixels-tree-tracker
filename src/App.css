@@ -42,7 +42,8 @@ header {
   font-family: PressStart2P;
   font-size: 16px;
   text-shadow: 0 2px 0 #28248c;
-  margin-top: 3rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 form {
@@ -156,5 +157,10 @@ tr {
   color: #28248c;
   font-family: PressStart2P;
   font-size: 9px;
-  margin-bottom: 2rem;
+}
+
+@media screen and (max-width: 1200px) {
+  .hideColumn {
+    display: none;
+  }
 }
