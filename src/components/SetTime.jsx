@@ -1,4 +1,5 @@
 import React from "react";
+import "../App.css";
 import { useState } from "react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
@@ -10,12 +11,11 @@ const SetTime = ({ landId, lands, setLands }) => {
 
   const handleSetTime = (event) => {
     event.preventDefault();
-
     const newTime = parse(time, "yyyy-MM-dd'T'HH:mm", new Date());
 
     const index = lands.findIndex((land) => land.id === landId);
 
-    if (index !== -1) {
+    if (index !== -1 && time !== "") {
       lands[index].time = newTime;
       setLands([...lands]);
     }
@@ -24,7 +24,9 @@ const SetTime = ({ landId, lands, setLands }) => {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button>Set</Button>
+        <button className="customButton smallText">
+          <img src="./images/set-icon.svg" className="smallIcon" />
+        </button>
       </PopoverTrigger>
       <PopoverContent className="w-50">
         <form onSubmit={handleSetTime}>
@@ -33,7 +35,9 @@ const SetTime = ({ landId, lands, setLands }) => {
             value={time}
             onChange={(e) => setTime(e.target.value)}
           />
-          <Button type="submit">Set</Button>
+          <button className="customButton" type="submit">
+            Set
+          </button>
         </form>
       </PopoverContent>
     </Popover>

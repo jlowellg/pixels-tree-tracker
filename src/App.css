@@ -1,9 +1,3 @@
-body {
-  display: flex;
-  justify-content: center;
-  min-height: 100vh;
-}
-
 @font-face {
   font-family: Pixelify;
   src: url(./assets/fonts/PixelifySans-VariableFont_wght.ttf);
@@ -18,13 +12,37 @@ body {
   align-items: center;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  margin-top: 1rem;
+  margin: 3rem;
+}
+
+header {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .title {
   font-family: PressStart2P;
   font-size: 90px;
+  color: #e3ff37;
+  line-height: 1;
+  text-shadow: -5px -5px 0 #28248c, -5px -5px 0 #28248c, -5px 5px 0 #28248c,
+    10px 12px 0 #28248c;
+}
+
+.subTitle {
+  color: #ffff;
+  font-family: PressStart2P;
+  font-size: 45px;
+  text-shadow: 2px 5px 0 #28248c;
+}
+
+.clock {
+  color: #e3ff37;
+  font-family: PressStart2P;
+  font-size: 16px;
+  text-shadow: 0 2px 0 #28248c;
+  margin-top: 3rem;
 }
 
 form {
@@ -32,12 +50,111 @@ form {
   gap: 7px;
 }
 
+button.customButton {
+  color: #28248c;
+  background-color: #e3ff37;
+  border-radius: 7px;
+  font-family: PressStart2P;
+  font-weight: 500;
+  padding: 0 1rem;
+  min-height: 2rem;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+.customButton:hover {
+  background-color: #cbe330;
+}
+
+button.pink {
+  background-color: #ed47a4;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.pink:hover {
+  background-color: #d23f92;
+}
+
+.smallText {
+  font-size: 10px;
+  line-height: 2rem;
+}
+
+.tableContainer {
+  background-color: #28248c;
+  min-width: 1200px;
+  border-radius: 1rem;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
 table {
-  margin-top: 2rem;
+  margin-top: 0.5rem;
+  font-family: PressStart2P;
+}
+
+thead {
+  color: #e3ff37;
+  font-size: 18px;
+}
+
+tbody {
+  color: white;
 }
 
 td {
-  border: 1px solid black;
   min-width: 150px;
   text-align: center;
+  padding: 1rem;
+}
+
+tr {
+  border-top: 3px solid #222044;
+  border-bottom: 3px solid #222044;
+}
+
+.settingsCell {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.smallIcon {
+  max-height: 20px;
+  max-width: 20px;
+}
+
+.drawer {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.cctv {
+  margin-top: 2rem;
+}
+
+.cctvLabel {
+  color: #28248c;
+  font-family: PressStart2P;
+  font-size: 16px;
+  margin-bottom: 2rem;
+}
+
+.alertMessage {
+  color: #28248c;
+  font-family: PressStart2P;
+  font-size: 16px;
+}
+
+.credits {
+  color: #28248c;
+  font-family: PressStart2P;
+  font-size: 9px;
+  margin-bottom: 2rem;
 }

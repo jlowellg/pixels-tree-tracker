@@ -3,6 +3,10 @@ import "./App.css";
 import { Input } from "./components/ui/input";
 import { Button } from "./components/ui/button";
 import SetTime from "./components/SetTime";
+import ViewLand from "./components/ViewLand";
+import DeleteAllAlert from "./components/DeleteAllAlert";
+import ResetAlert from "./components/ResetAlert";
+import DeleteAlert from "./components/DeleteAlert";
 import {
   format,
   formatDuration,
@@ -17,11 +21,11 @@ function App() {
   const [lands, setLands] = useState([]);
   const [settings, setSettings] = useState(false);
 
-  const [time, setTime] = useState(format(Date.now(), "MM/dd hh:mm:ss a"));
+  const [time, setTime] = useState(format(Date.now(), "MMMM dd | hh:mm:ss a"));
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      setTime(format(Date.now(), "MM/dd hh:mm:ss a"));
+      setTime(format(Date.now(), "MMMM dd | hh:mm:ss a"));
     }, 1000);
 
     return () => clearInterval(intervalId);
@@ -64,12 +68,6 @@ function App() {
     }
   };
 
-  const handleClearAll = (event) => {
-    event.preventDefault();
-    localStorage.removeItem("lands");
-    window.location.reload();
-  };
-
   const handleDiff = (time, id) => {
     const diffMinutes = differenceInMinutes(addMinutes(time, 435), Date.now());
 
@@ -86,29 +84,24 @@ function App() {
     return timeRemaining;
   };
 
-  const handleDelete = (id) => {
-    const updatedLands = lands.filter((item) => item.id !== id);
-    setLands(updatedLands);
-  };
-
-  const handleReset = (id) => {
-    const index = lands.findIndex((land) => land.id === id);
-
-    if (index !== -1) {
-      lands[index].time = new Date();
-      setLands([...lands]);
-    }
-  };
-
   const handleSettings = (event) => {
     setSettings(!settings);
   };
 
+  const sortedLands = lands.slice().sort((a, b) => {
+    const timeA = new Date(a.time);
+    const timeB = new Date(b.time);
+
+    return timeA - timeB;
+  });
+
   return (
     <div className="mainContainer">
       <header>
-        <h1 className="title">PiXelS Tree</h1>
-        <h3>{time}</h3>
+        <h1 className="title">PiXelS</h1>
+        <h2 className="subTitle">Tree Tracker</h2>
+        <h3 className="clock">{time}</h3>
+        <h6 className="credits">by: jlowell</h6>
       </header>
 
       <form onSubmit={handleSubmit}>
@@ -119,49 +112,65 @@ function App() {
           value={landId}
           onChange={(e) => setLandId(e.target.value)}
         />
-        <Button type="submit">Add</Button>
+        <button className="customButton" type="submit">
+          Add
+        </button>
       </form>
       <br />
-      <Button variant="destructive" onClick={handleClearAll}>
-        Clear All
-      </Button>
 
-      <Button onClick={handleSettings}>Edit</Button>
-
-      <table>
-        <thead>
-          <tr>
-            <td>Land ID</td>
-            <td>Previous time:</td>
-            <td>Comeback in:</td>
-            <td>Time Remaining:</td>
-            <td></td>
-          </tr>
-        </thead>
-        <tbody>
-          {lands.map((land, index) => (
-            <tr key={index}>
-              <td>{land.id}</td>
-              <td>{format(land.time, "MM/dd hh:mm a")}</td>
-              <td>{format(addMinutes(land.time, 435), "MM/dd hh:mm a")}</td>
-              <td>{handleDiff(land.time, land.id)}</td>
-
-              {settings ? (
-                <td>
-                  <Button
-                    variant="destructive"
-                    onClick={() => handleDelete(land.id)}
-                  >
-                    del
-                  </Button>
-                  <Button onClick={() => handleReset(land.id)}>Reset</Button>
-                  <SetTime landId={land.id} lands={lands} setLands={setLands} />
-                </td>
-              ) : null}
+      <div className="tableContainer">
+        <table>
+          <thead>
+            <tr>
+              <td>Land ID</td>
+              <td>Previous time:</td>
+              <td>Comeback in:</td>
+              <td>Time Remaining:</td>
+              <td className="settingsCell">
+                <button
+                  className="customButton smallText"
+                  onClick={handleSettings}
+                >
+                  Edit
+                </button>
+                {settings ? <DeleteAllAlert /> : null}
+              </td>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {sortedLands.map((land, index) => (
+              <tr key={index}>
+                <td>
+                  <ViewLand id={land.id} />
+                </td>
+                <td>{format(land.time, "MM/dd hh:mm a")}</td>
+                <td>{format(addMinutes(land.time, 435), "MM/dd hh:mm a")}</td>
+                <td>{handleDiff(land.time, land.id)}</td>
+
+                {settings ? (
+                  <td className="settingsCell">
+                    <ResetAlert
+                      landId={land.id}
+                      lands={lands}
+                      setLands={setLands}
+                    />
+                    <SetTime
+                      landId={land.id}
+                      lands={lands}
+                      setLands={setLands}
+                    />
+                    <DeleteAlert
+                      landId={land.id}
+                      lands={lands}
+                      setLands={setLands}
+                    />
+                  </td>
+                ) : null}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
