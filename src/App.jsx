@@ -141,7 +141,13 @@ function App() {
             {sortedLands.map((land, index) => (
               <tr key={index}>
                 <td>
-                  <ViewLand id={land.id} />
+                  <a
+                    href={`https://play.pixels.xyz/pixels/share/${land.id}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {land.id}
+                  </a>
                 </td>
                 <td className="hideColumn">
                   {format(land.time, "MM/dd hh:mm a")}
