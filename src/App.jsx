@@ -56,7 +56,9 @@ function App() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (landId.trim() !== "") {
+
+    const existingLand = lands.find((land) => land.id === landId);
+    if (landId !== "" && !existingLand) {
       const currentDate = new Date();
       const dateString = currentDate.toString();
       const newLand = {
@@ -65,6 +67,8 @@ function App() {
       };
       setLands([...lands, newLand]);
       setLandId("");
+    } else {
+      console.log(landId, "Already exists");
     }
   };
 

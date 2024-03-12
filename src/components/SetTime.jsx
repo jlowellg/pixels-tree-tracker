@@ -29,16 +29,19 @@ const SetTime = ({ landId, lands, setLands }) => {
         </button>
       </PopoverTrigger>
       <PopoverContent className="w-50">
-        <form onSubmit={handleSetTime}>
-          <Input
-            type="datetime-local"
-            value={time}
-            onChange={(e) => setTime(e.target.value)}
-          />
-          <button className="customButton" type="submit">
-            Set
-          </button>
-        </form>
+        <div>
+          <h1 className="landID">{landId}</h1>
+          <form onSubmit={handleSetTime}>
+            <Input
+              type="datetime-local"
+              value={time}
+              onChange={(e) => setTime(e.target.value)}
+            />
+            <button className="customButton" type="submit">
+              Set
+            </button>
+          </form>
+        </div>
       </PopoverContent>
     </Popover>
   );
