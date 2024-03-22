@@ -104,7 +104,15 @@ function App() {
       <header>
         <h1 className="title">PiXelS</h1>
         <h2 className="subTitle">Tree Tracker</h2>
-        <h6 className="credits">by: jlowell</h6>
+        <h6 className="credits">
+          <a
+            href={`https://twitter.com/jlowell_web3`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            by:jlowell
+          </a>
+        </h6>
         <h3 className="clock">{time}</h3>
       </header>
 
